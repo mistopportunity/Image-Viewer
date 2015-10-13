@@ -1,0 +1,32 @@
+﻿<Window x:Class="Image_Viewer.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Image_Viewer"
+    Drop="window_Drop" Title="Image Viewer" Height="212" Width="304" WindowStartupLocation="CenterScreen" TabIndex="0" IsTabStop="False" Cursor="Arrow" FontSize="20" FontFamily="Segoe UI Semilight" IsHitTestVisible="True" ScrollViewer.VerticalScrollBarVisibility="Disabled" AllowDrop="True" Icon="Picture.ico" Closed="Window_Closed" KeyUp="Window_KeyUp" KeyDown="Window_KeyDown" Loaded="Window_Loaded" SizeChanged="Window_SizeChanged" Deactivated="Window_Deactivated" DragEnter="window_DragEnter" MinWidth="575" MinHeight="385" SnapsToDevicePixels="True" Foreground="#FF1B1B1B">
+    <Grid x:Name="grid" IsHitTestVisible="True" RenderOptions.BitmapScalingMode="NearestNeighbor" AllowDrop="True" ScrollViewer.VerticalScrollBarVisibility="Disabled" Background="#FFF7F7F7" Cursor="Arrow">
+        <Border x:Name="topBar" Background="White" VerticalAlignment="Top" Height="45" IsHitTestVisible="False" BorderThickness="0,0,0,2" BorderBrush="#FFE0DFDF"></Border>
+        <Border x:Name="bottomBar" Background="White" VerticalAlignment="Bottom" Height="55" IsHitTestVisible="False" BorderThickness="0,2,0,0" BorderBrush="#FFE0DFDF"/>
+        <Button x:Name="next" Content="Next Image" HorizontalAlignment="Center" Margin="262,0,0,6" VerticalAlignment="Bottom" Width="255" Height="41" TabIndex="0" IsTabStop="False" Focusable="False" AllowDrop="True" Click="next_Click" IsEnabled="False" ScrollViewer.VerticalScrollBarVisibility="Disabled" FontSize="20" FontFamily="Segoe UI Semilight" Padding="0" BorderThickness="1" Foreground="#FF1B1B1B"/>
+        <Button x:Name="previous" Content="Previous Image" HorizontalAlignment="Center" Margin="0,0,262,6" VerticalAlignment="Bottom" Width="255" Height="41" TabIndex="0" IsTabStop="False" Focusable="False" AllowDrop="True" Click="previous_Click" IsEnabled="False" ScrollViewer.VerticalScrollBarVisibility="Disabled" FontSize="20" FontFamily="Segoe UI Semilight" Padding="0" BorderThickness="1" Foreground="#FF1B1B1B"/>
+        <Rectangle x:Name="borderRectangle" Stroke="#FF646464" StrokeThickness="4" StrokeDashArray="5" Margin="110,75,110,85" ScrollViewer.VerticalScrollBarVisibility="Disabled" AllowDrop="True" IsHitTestVisible="False" SnapsToDevicePixels="True" StrokeDashCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeMiterLimit="0"/>
+        <Label VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0" x:Name="label" FontFamily="Segoe UI " Foreground="#FF1B1B1B" Content="No Images Loaded" FontSize="22.667" Height="45" Background="{x:Null}" Padding="0"/>
+        <local:ZoomBorder x:Name="imageBorder" Background="#FFF7F7F7" ClipToBounds="True" Margin="0,45,0,55" Visibility="Hidden">
+            <Border>
+                <Image x:Name="image" Margin="15,15,15,15" ClipToBounds="True" Width="Auto" Height="Auto" IsHitTestVisible="False" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Stretch="Uniform"/>
+                <Border.Effect>
+                    <DropShadowEffect Direction="180" BlurRadius="5" RenderingBias="Performance" ShadowDepth="0"/>
+                </Border.Effect>
+            </Border>
+        </local:ZoomBorder>
+        <Label x:Name="dropImages" Margin="110,75,110,85" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Disabled" AllowDrop="True" IsHitTestVisible="False" FontFamily="Segoe UI Semibold" Foreground="#FF646464" Padding="0" Content="Drop Images Anywhere" FontSize="22.667"/>
+        <Border x:Name="menu" IsHitTestVisible="True" CornerRadius="2" BorderThickness="2" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,3,3,0" Width="195" Height="265" Grid.Row="0" BorderBrush="#FFC1C1C1" AllowDrop="False" Visibility="Hidden" Background="#FFE8E8E8">
+            <StackPanel ScrollViewer.VerticalScrollBarVisibility="Disabled" IsHitTestVisible="True">
+                <Button x:Name="addImages"  HorizontalAlignment="Center" VerticalAlignment="Top" Width="150" Height="40" Margin="0,37,0,0" FontSize="18.667" Focusable="False" IsTabStop="False" TabIndex="0" ScrollViewer.VerticalScrollBarVisibility="Disabled" Content="Add Images" Click="addImages_Click" AllowDrop="False" Padding="0" FontFamily="Segoe UI " BorderThickness="1" Foreground="#FF1B1B1B"/>
+                <Button x:Name="helpButton"  HorizontalAlignment="Center" VerticalAlignment="Top" Width="150" Height="40" Margin="0,16,0,0" FontSize="18.667" Focusable="False" IsTabStop="False" TabIndex="0" ScrollViewer.VerticalScrollBarVisibility="Disabled" Content="Help" Click="helpButton_Click" AllowDrop="False" Padding="0" FontFamily="Segoe UI " BorderThickness="1" Foreground="#FF1B1B1B"/>
+                <Button x:Name="Reset_Images" IsEnabled="False" HorizontalAlignment="Center" Margin="0,16,0,0" VerticalAlignment="Top" Width="150" Height="40" FontSize="18.667" Focusable="False" IsTabStop="False" TabIndex="0" ScrollViewer.VerticalScrollBarVisibility="Disabled" Content="Clear Images" Click="Reset_Images_Click" AllowDrop="False" Padding="0" FontFamily="Segoe UI" BorderThickness="1" Foreground="#FF1B1B1B"/>
+                <Button x:Name="fullscreen" IsEnabled="False"  HorizontalAlignment="Center" VerticalAlignment="Top" Width="150" Height="40" Margin="0,16,0,0" FontSize="18.667" Focusable="False" IsTabStop="False" TabIndex="0" ScrollViewer.VerticalScrollBarVisibility="Disabled" Content="Fullscreen" Click="fullscreen_Click" AllowDrop="False" Padding="0" FontFamily="Segoe UI" BorderThickness="1" Foreground="#FF1B1B1B"/>
+            </StackPanel>
+        </Border>
+        <Image x:Name="menuImage" RenderOptions.BitmapScalingMode="NearestNeighbor" HorizontalAlignment="Right" Height="25" Margin="0,10,10,0" VerticalAlignment="Top" Width="35" Source="MenuBars.png" Stretch="Fill" Cursor="Hand" ScrollViewer.VerticalScrollBarVisibility="Disabled" MouseUp="menuImage_MouseUp"/>
+    </Grid>
+</Window>
